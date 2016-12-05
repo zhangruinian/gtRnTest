@@ -33,7 +33,7 @@ export default class InfoPage extends Component{
         });
     }
     componentDidMount(){
-        Util.get(this.props.currentUrl,{page_idx:1,token:"cb4d4c9ab84111e6ac9800163e006b26"},this.solveData);
+        Util.get(this.props.currentUrl,{page_idx:1,token:"2ca73fc4ba8f11e6ac9800163e006b26"},this.solveData);
         this.state.waitShow=false;
     }
     render() {

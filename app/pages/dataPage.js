@@ -2,7 +2,6 @@
  * Created by 张瑞年 on 2016/11/22.
  */
 import React,{Component} from "react";
-
 import {
     StyleSheet,
     Text,

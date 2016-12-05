@@ -29,50 +29,41 @@ const Util = {
      * @param url 请求的URL
      * @param data post的数据
      * @param successCallback 请求成功回调
-     * @param failCallback failCallback 请求失败回调
      * post两种方法，rn中联调测试
      */
-    post: (url, data, successCallback, failCallback) => {
-        let formData = new FormData();
-        Object.keys(data).map(function(key) {
-            var value = data[key];
-            formData.append(key, value);
-        });
 
+    post: (url, data, successCallback) => {
         let fetchOptions = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                // 'Content-Type': 'application/json'
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/json'
             },
-            body: formData
-            // body: JSON.stringify(data)
+            body: JSON.stringify(data)
         };
 
-        fetch(url, fetchOptions)
-            .then((response) => response.text())
-            .then((responseText) => {
-                let result = JSON.parse(responseText);
-                successCallback(result.status, result.code, result.message, result.data, result.share);
+        fetch(baseUrl+url, fetchOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                successCallback(result);
             })
             .catch((err) => {
-                failCallback(err);
+                console.log(err)
             });
     },
-
     /**
      * 日志打印
+     * 方便打印json,不用console.log方式
      * @param obj
      */
-    /*log: (obj) => {
-        var description = "";
+    log: (obj) => {
+        let description = "";
         for(let i in obj){
             let property = obj[i];
             description += i + " = " + property + "\n";
         }
         alert(description);
-    },*/
+    },
 };
 
 export default Util;

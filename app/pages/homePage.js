@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import {Card,Button} from "react-native-elements";
 import commonStyles,{colors} from "../../app/common/globalStyle";
+import Util from "../../app/common/utils";
 import HomeSub1 from "./homeSub1";
 export default class HomePage extends Component{
     constructor(props){
@@ -21,6 +22,7 @@ export default class HomePage extends Component{
             test:"test"
         };
         this.jump=this.jump.bind(this);
+        this.post=this.post.bind(this);
     }
     jump(){
         InteractionManager.runAfterInteractions(() => {
@@ -33,6 +35,14 @@ export default class HomePage extends Component{
             })
         });
     }
+    post(){
+        // Util.post("account/set-auth-user-info/?token=2ca73fc4ba8f11e6ac9800163e006b26",{nick_name :"哈哈哈"},this.solve);
+        alert(123)
+        Util.log({nick_name :"哈哈哈",hgai:"32u98tu"})
+    }
+    solve(data){
+        console.log(data)
+    }
     render(){
         return(
             <View style={[commonStyles.container,styles.container]}>
@@ -40,9 +50,16 @@ export default class HomePage extends Component{
                 <Card style={{marginTop:10}}
                     title='HELLO WORLD'
                 >
-                    <Image source={require('../image/welcome.png')}
+                    {/*<Image source={require('../image/welcome.png')}
                            resizeMode="stretch"
-                           style={{width: 280, height: 300}} />
+                           style={{width: 230, height: 250}} />*/}
+                    <Button
+                        small
+                        icon={{name: 'keyboard-arrow-left'}}
+                        backgroundColor='#03A9F4'
+                        title='post测试'
+                        onPress={this.post}
+                    />
                     <Text style={{marginBottom: 10}}>
                         The idea with React Native Elements is more about component structure than actual design.
                     </Text>
