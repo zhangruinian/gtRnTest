@@ -4,7 +4,8 @@
 import React ,{Component} from "react";
 import {Text,View} from "react-native";
 import commonStyles,{colors} from "../../app/common/globalStyle";
-export  default class HomeSub1 extends Component{
+import NavigationBar from "../../app/common/navigationBar";
+export  default class HomeSub extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -16,12 +17,13 @@ export  default class HomeSub1 extends Component{
     }
     render(){
         return(
-            <View style={commonStyles.container} {...this.props}>
+            <View style={[commonStyles.container,{paddingTop:12}]} {...this.props}>
+                <NavigationBar title="子页面1" {...this.props}></NavigationBar>
                 <Text
                     onPress={()=>{
                         this.props.navigator.pop()
                     }}
-                >home1sub测试页面如何返回??看来要自己做啊,,不会和ionic一样自己生成</Text>
+                >home1sub测试页面返回????</Text>
                 <Text>{this.state.id}</Text>
                 <Text>{this.props.text}</Text>
             </View>

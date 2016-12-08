@@ -9,7 +9,8 @@ import {
     View,
     Image,
     ListView,
-    ActivityIndicator
+    ActivityIndicator,
+    RefreshControl
 } from "react-native";
 import {List,ListItem} from "react-native-elements";
 import commonStyles,{colors} from "../../app/common/globalStyle";
@@ -19,13 +20,14 @@ export default class InfoPage extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            isRefreshing:false,
             waitShow:true,
             dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
         };
         this.solveData=this.solveData.bind(this);
     }
     static defaultProps={
-        currentUrl:"admin/read-api-call-counts/"
+        currentUrl:"admin/read-api-call-counts/",
     };
     solveData(data){
         this.setState({
@@ -33,7 +35,7 @@ export default class InfoPage extends Component{
         });
     }
     componentDidMount(){
-        Util.get(this.props.currentUrl,{page_idx:1,token:"2ca73fc4ba8f11e6ac9800163e006b26"},this.solveData);
+        Util.get(this.props.currentUrl,{page_idx:1,token:"bf50f874bc2411e6ac9800163e006b26"},this.solveData);
         this.state.waitShow=false;
     }
     render() {
@@ -50,6 +52,15 @@ export default class InfoPage extends Component{
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
+                    refreshControl={
+                      <RefreshControl
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={()=>{this.setState({isRefreshing:true})}}
+                        colors={['red','#ffd500','#0080ff','#99e600']}
+                        tintColor='rgb(22,131,251)'
+                        title="Loading..."
+                        titleColor='rgb(22,131,251)'
+                      /> }
                 />
             </View>
         );

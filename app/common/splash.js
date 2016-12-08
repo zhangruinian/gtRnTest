@@ -6,7 +6,9 @@ import {
     Dimensions,
     Image,
     InteractionManager,
-    View
+    View,
+    Platform,
+    BackAndroid
 } from 'react-native';
 import TabNav from './tabs';
 // 解构赋值获取宽高，为了设置image宽高，全屏展示图片，或者固定，留padding
@@ -17,7 +19,7 @@ class Splash extends Component {
         super(props);
     }
     componentDidMount() {
-        const {navigator} = this.props;
+        let {navigator} = this.props;
         this.timer = setTimeout(() => {
             InteractionManager.runAfterInteractions(() => {
                 navigator.resetTo({
@@ -25,7 +27,7 @@ class Splash extends Component {
                     name: 'TabNav'
                 });
             });
-        }, 1000);
+        }, 500);
     }
 
     componentWillUnmount() {

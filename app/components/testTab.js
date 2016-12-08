@@ -7,7 +7,7 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, ScrollView, RefreshControl} from 'react-native';
+import {Text, StyleSheet, View, ScrollView, RefreshControl,WebView} from 'react-native';
 import commonStyles,{colors,windowWidth}from "../../app/common/globalStyle";
 
 export default class TestTab extends Component {
@@ -23,11 +23,17 @@ export default class TestTab extends Component {
     render() {
         let {tabTag} = this.props;
             return (
-                <View style={commonStyles.container}>
-                    <Text>
+               /* <View style={commonStyles.container}>
+                   <Text>
                         {tabTag}
                     </Text>
-                </View>
+                </View>*/
+
+           //  source={{uri: 'https://github.com/facebook/react-native'}}
+                <WebView
+                    source={{uri: 'https://www.baidu.com/'}}
+                    style={{marginTop: 5}}
+                />
             );
     }
 

@@ -13,31 +13,41 @@ import {
     Navigator,
     View,
     StatusBar,
-    Platform
+    Platform,
+    AsyncStorage,
+    BackAndroid,
 } from 'react-native';
-
+import commonStyles,{colors} from "../../app/common/globalStyle";
 import Splash from './splash';
 
 class SetUp extends Component {
+    componentDidMount(){
+        this.loadInitialState().done();
+    }
+    async loadInitialState (){
+        let user = await AsyncStorage.getItem("user");
+        if (user !== null){
+           console.log(user)
+        } else {
+           AsyncStorage.setItem("user","zhang rui nian",
+             ()=>{
+                 console.log(user)
+             });
+        }
+    }
     render() {
         return (
             <View style={{flex: 1}}>
-                {/*<StatusBar
-                    barStyle='light-content'
-                    backgroundColor='transparent'
-                    translucent={true}
-                />*/}
                 {/*configureScene={()=>{
                 return  Navigator.SceneConfigs.VerticalDownSwipeJump;
             }}*/}
                 <StatusBar
                     hidden={false}
-                    backgroundColor={"#03A9F4"}
+                    backgroundColor={colors.statusBarColor}
                     translucent={true}
                 />
                 <Navigator
                     initialRoute={{name: 'Splash', component: Splash}}
-
                     renderScene={(route, navigator) => {
                         let Component = route.component;
                         return (

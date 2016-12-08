@@ -6,7 +6,9 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    Platform,
+    BackAndroid
 } from 'react-native';
 import { Tabs, Tab, Icon  } from 'react-native-elements';
 import HomePage from '../pages/homePage'
@@ -19,18 +21,39 @@ export default class TabNav extends Component {
         this.state = {
             selectedTab: '主页'
         };
-        this.changeTab = this.changeTab.bind(this)
+        this.changeTab = this.changeTab.bind(this);
+        this.onbackAndroid = this.onbackAndroid.bind(this);
     }
     changeTab (selectedTab) {
         this.setState({
             selectedTab
         })
     }
+    componentWillMount(){
+        if (Platform.OS==="android"){
+            BackAndroid.addEventListener('hardwareBackPress',this.onbackAndroid);
+        }
+    }
+    componentWillUnmount(){
+        if (Platform.OS==="android"){
+            BackAndroid.addEventListener('hardwareBackPress',this.onbackAndroid);
+        }
+    }
+    onbackAndroid(){
+        const {navigator} =this.props;
+        const routers = navigator.getCurrentRoutes();
+        alert(`路由长度${routers.length}`);
+        if (routers.length>1){
+            navigator.pop();
+            return true;
+        }
+        return false;
+    }
     render () {
         const { selectedTab } = this.state;
         return (
             // 主页title太多，尝试优化修改为中文看什么原因
-            <Tabs tabBarStyle={{backgroundColor:"#fff"}}>
+            <Tabs tabBarStyle={{backgroundColor:"#fff"}} >
                 <Tab
                     titleStyle={[styles.titleStyle, {marginTop: -1}]}
                     selectedTitleStyle={[styles.titleSelected, {marginTop: -3, marginBottom: 7}]}

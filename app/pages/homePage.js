@@ -14,7 +14,7 @@ import {
 import {Card,Button} from "react-native-elements";
 import commonStyles,{colors} from "../../app/common/globalStyle";
 import Util from "../../app/common/utils";
-import HomeSub1 from "./homeSub1";
+import HomeSub from "./homeSub1";
 export default class HomePage extends Component{
     constructor(props){
         super(props);
@@ -27,8 +27,8 @@ export default class HomePage extends Component{
     jump(){
         InteractionManager.runAfterInteractions(() => {
             this.props.navigator.push({
-                name: 'HomeSub1',
-                component: HomeSub1,
+                name: 'HomeSub',
+                component: HomeSub,
                 passProps: {
                     id: 12
                 }
@@ -47,12 +47,15 @@ export default class HomePage extends Component{
         return(
             <View style={[commonStyles.container,styles.container]}>
                 {/*下面的style审查时候出现了，但是样式并没看得出生效*/}
-                <Card style={{marginTop:10}}
+                <Card
                     title='HELLO WORLD'
                 >
-                    {/*<Image source={require('../image/welcome.png')}
-                           resizeMode="stretch"
-                           style={{width: 230, height: 250}} />*/}
+                    <View style={{alignItems:"center"}}>
+                        <Image source={require('../image/welcome.png')}
+                               resizeMode="stretch"
+                               style={[{width: 230, height: 250,marginBottom:5}]} />
+                    </View>
+
                     <Button
                         small
                         icon={{name: 'keyboard-arrow-left'}}
@@ -95,6 +98,7 @@ export default class HomePage extends Component{
 
 const styles= StyleSheet.create({
     container:{
-        justifyContent:"flex-start"
+        paddingTop:12,
+        alignItems:"center"
     }
 })
