@@ -64,7 +64,7 @@ export default class HomePage extends Component{
                         onPress={this.post}
                     />
                     <Text style={{marginBottom: 10}}>
-                        The idea with React Native Elements is more about component structure than actual design.
+                        🐳💦🏰🏯 近水楼台
                     </Text>
                     <Button
                         small

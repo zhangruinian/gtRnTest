@@ -27,7 +27,7 @@ export default class InfoPage extends Component{
         this.solveData=this.solveData.bind(this);
     }
     static defaultProps={
-        currentUrl:"admin/read-api-call-counts/",
+        // currentUrl:"admin/read-api-call-counts/",
     };
     solveData(data){
         this.setState({
@@ -35,7 +35,8 @@ export default class InfoPage extends Component{
         });
     }
     componentDidMount(){
-        Util.get(this.props.currentUrl,{page_idx:1,token:"bf50f874bc2411e6ac9800163e006b26"},this.solveData);
+        //这样更方便，原生js一样，不要过多受angular2思维影响，不一样。。
+        Util.get(currentUrl,{page_idx:1,token:"f8af7cb0c00e11e6a1e900163e006b26"},this.solveData);
         this.state.waitShow=false;
     }
     render() {
@@ -45,7 +46,7 @@ export default class InfoPage extends Component{
                 {/*看源码各种都可以学习 三目运算符比较简洁明了~*/}
                 {!this.state.waitShow ? null:(
                     <ActivityIndicator
-                        size="large"
+                        size="large"到
                         style={{alignItems: 'center',justifyContent: 'center',flex:1}}
                         color={"green"}/>
                 )}

@@ -21,7 +21,8 @@ export default class TestTab extends Component {
     }
 
     render() {
-        let {tabTag} = this.props;
+        // 父向子传数据,子组件this.props.tabTag获取，父组件则在组件上面写好属性
+        // let {tabTag} = this.props;
             return (
                /* <View style={commonStyles.container}>
                    <Text>

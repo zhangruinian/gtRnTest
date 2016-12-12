@@ -18,12 +18,12 @@ export  default class HomeSub extends Component{
     render(){
         return(
             <View style={[commonStyles.container,{paddingTop:12}]} {...this.props}>
-                <NavigationBar title="子页面1" {...this.props}></NavigationBar>
+                <NavigationBar title="子页面1" {...this.props}/>
                 <Text
                     onPress={()=>{
                         this.props.navigator.pop()
                     }}
-                >home1sub测试页面返回????</Text>
+                >home1sub测试页面返回????!!</Text>
                 <Text>{this.state.id}</Text>
                 <Text>{this.props.text}</Text>
             </View>
